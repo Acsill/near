@@ -59,11 +59,37 @@ cd ~/nearcore
 
 near login
 ![image](https://user-images.githubusercontent.com/39818797/180728209-09361564-eaa5-4a39-b7a7-c8608e88f07a.png)
+
+# 挑战三
+
 创建pool水池
 
 near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "saltfish1029", "owner_id": "saltfish1029.shardnet.near", "stake_public_key": "ed25519:CXeAqNzf8cieKiosPAh4J35BMi8wth2quM7oLbFhafaU", "reward_fee_fraction": {"numerator": 1, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId="saltfish1029.shardnet.near" --amount=30 --gas=300000000000000
 就完成了
 
+# 挑战四
+
+计划任务脚本：
+#!/bin/sh
+# Ping call to renew Proposal added to crontab
+
+export NEAR_ENV=shardnet
+export LOGS=/root/near/logs
+export POOLID=saltfish1029
+export ACCOUNTID=saltfish1029
+
+echo "---" >> $LOGS/all.log
+date >> $LOGS/all.log
+near call $POOLID.factory.shardnet.near ping '{}' --accountId $ACCOUNTID.shardnet.near --gas=3000000000000 >> $LOGS/all.log
+near proposals | grep $POOLID >> $LOGS/all.log
+echo "-----current"
+near validators current | grep $POOLID >> $LOGS/all.log
+echo "-----next"
+near validators next | grep $POOLID >> $LOGS/all.log
+
+ping并设置计划任务
+
+![image](https://user-images.githubusercontent.com/39818797/180729095-878113a7-5385-4843-8657-67b463da32d4.png)
 
 
 
