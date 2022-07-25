@@ -15,8 +15,8 @@ near proposals
 near validators current
 near validators next
 # 挑战二
-执行命令：
 
+执行命令：
 sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python docker.io protobuf-compiler libssl-dev pkg-config clang llvm cargo
 sudo apt install python3-pip
 USER_BASE_BIN=$(python3 -m site --user-base)/bin
@@ -35,6 +35,7 @@ cargo build -p neard --release --features shardnet
 
 ![image](https://user-images.githubusercontent.com/39818797/180215992-3a91c2de-6efb-4db5-b3e9-5d6a736fd393.png)
 初始化：
+
 ./target/release/neard --home ~/.near init --chain-id shardnet --download-genesis
 删除旧config.json然后重新下载
 
